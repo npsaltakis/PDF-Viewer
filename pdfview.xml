@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="content" method="upgrade">
+    <name>PLG_CONTENT_PDFVIEW</name>
+    <author>WebtechSolutions</author>
+    <authorEmail>nickpsal@gmail.com</authorEmail>
+    <authorUrl>https://github.com/npsaltakis</authorUrl>
+    <creationDate>2026-06</creationDate>
+    <copyright>(C) 2026 WebtechSolutions</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <version>1.0.0</version>
+    <description>PLG_CONTENT_PDFVIEW_XML_DESCRIPTION</description>
+    <namespace path="src">Nickpsal\Plugin\Content\Pdfview</namespace>
+
+    <updateservers>
+        <server type="extension" priority="1" name="PDF Viewer Updates">https://raw.githubusercontent.com/npsaltakis/PDF-Viewer/main/updates.xml</server>
+    </updateservers>
+
+    <files>
+        <filename plugin="pdfview">pdfview.php</filename>
+        <folder>services</folder>
+        <folder>src</folder>
+        <folder>language</folder>
+    </files>
+    <languages>
+        <language tag="en-GB">language/en-GB/plg_content_pdfview.ini</language>
+        <language tag="en-GB">language/en-GB/plg_content_pdfview.sys.ini</language>
+    </languages>
+</extension>
