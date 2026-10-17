@@ -7,7 +7,7 @@
     <creationDate>2026-06</creationDate>
     <copyright>(C) 2026 WebtechSolutions</copyright>
     <license>GNU General Public License version 2 or later</license>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <description>PLG_CONTENT_PDFVIEW_XML_DESCRIPTION</description>
     <namespace path="src">Nickpsal\Plugin\Content\Pdfview</namespace>
 

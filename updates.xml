@@ -2,15 +2,15 @@
 <updates>
 	<update>
 		<name>Content - PDF Viewer</name>
-		<description>Embeds PDF files in articles using {pdf=URL|width|height|pdfjs}. Compatible with Joomla 6.</description>
+		<description>Embeds PDF files in articles using {pdf=URL|width|height}. Compatible with Joomla 6.</description>
 		<element>pdfview</element>
 		<type>plugin</type>
 		<folder>content</folder>
-		<version>1.0.0</version>
-		<infourl title="PDF Viewer">https://github.com/npsaltakis/PDF-Viewer/releases/tag/v1.0.0</infourl>
+		<version>1.0.1</version>
+		<infourl title="PDF Viewer">https://github.com/npsaltakis/PDF-Viewer/releases/tag/v1.0.1</infourl>
 		<changelogurl>https://github.com/npsaltakis/PDF-Viewer/releases</changelogurl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/npsaltakis/PDF-Viewer/releases/download/v1.0.0/plg_content_pdfview_v1.0.0.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/npsaltakis/PDF-Viewer/releases/download/v1.0.1/plg_content_pdfview_v1.0.1.zip</downloadurl>
 		</downloads>
 		<maintainer>Nickpsal</maintainer>
 		<maintainerurl>https://github.com/npsaltakis</maintainerurl>

@@ -20,31 +20,30 @@ final class Pdfview extends CMSPlugin
             return;
         }
 
-        $viewerUrl = Uri::root(true) . '/plugins/content/pdf_embed/assets/viewer/pdfjs/web/viewer.html';
-
         $article->text = preg_replace_callback(
             '/\{pdf=([^\|\}]+)(?:\|([^\|\}]*))?(?:\|([^\|\}]*))?(?:\|[^\}]*)?\}/i',
-            function (array $m) use ($viewerUrl): string {
-                $pdfUrl = trim($m[1]);
-                $width  = !empty(trim($m[2] ?? '')) ? trim($m[2]) : '100%';
-                $height = !empty(trim($m[3] ?? '')) ? (int) $m[3] : 720;
+            function (array $m): string {
+                // The editor may wrap the URL in a link or add entities; keep only the plain URL
+                $pdfUrl = trim(html_entity_decode(strip_tags($m[1]), ENT_QUOTES, 'UTF-8'));
+                $width  = trim(strip_tags($m[2] ?? '')) ?: '100%';
+                $height = (int) strip_tags($m[3] ?? '') ?: 720;
 
-                // Rewrite live-site URLs to current-site-relative so PDF.js same-origin check passes
-                $siteRoot = rtrim(Uri::root(), '/');
-                $liveHost = 'https://www.aidff.com';
-                if (stripos($pdfUrl, $liveHost) === 0) {
-                    $pdfUrl = $siteRoot . substr($pdfUrl, strlen($liveHost));
-                } elseif (!preg_match('~^https?://~i', $pdfUrl)) {
-                    $pdfUrl = $siteRoot . '/' . ltrim($pdfUrl, '/');
+                if ($pdfUrl === '') {
+                    return $m[0];
                 }
 
-                $src = $viewerUrl . '?file=' . rawurlencode($pdfUrl);
+                if (!preg_match('~^https?://~i', $pdfUrl)) {
+                    $pdfUrl = rtrim(Uri::root(), '/') . '/' . ltrim($pdfUrl, '/');
+                }
+
+                $url = htmlspecialchars($pdfUrl, ENT_QUOTES);
 
                 return '<div class="pdfview-embed" style="width:' . htmlspecialchars($width, ENT_QUOTES) . ';max-width:100%;margin:1.5rem 0">'
-                    . '<' . 'iframe src="' . htmlspecialchars($src, ENT_QUOTES) . '" '
+                    . '<' . 'iframe src="' . $url . '#view=FitH" '
                     . 'width="100%" height="' . $height . '" '
                     . 'style="border:none;display:block;border-radius:4px" '
                     . 'allowfullscreen loading="lazy"></' . 'iframe>'
+                    . '<p style="margin:.5rem 0 0"><a href="' . $url . '" target="_blank" rel="noopener">PDF</a></p>'
                     . '</div>';
             },
             $article->text
